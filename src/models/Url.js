@@ -1,5 +1,5 @@
 const { DataTypes } = require('sequelize');
-const sequelize = require('../database'); // Importa tu conexión de Sequelize
+const sequelize = require('../database'); // Conexión a la base de datos
 
 const Url = sequelize.define('Url', {
   id: {
@@ -9,18 +9,18 @@ const Url = sequelize.define('Url', {
   },
   url: {
     type: DataTypes.STRING,
-    allowNull: false, // No permite valores nulos
+    allowNull: false,
     validate: {
       isUrl: true, // Valida que sea una URL válida
     },
   },
   shortened_url: {
     type: DataTypes.STRING,
-    allowNull: false, // No permite valores nulos
+    allowNull: false,
   },
 }, {
-  tableName: 'url', // Especifica el nombre exacto de la tabla en la base de datos
-  timestamps: false, // No agrega columnas `createdAt` y `updatedAt`
+  tableName: 'url', // Nombre exacto de la tabla en la base de datos
+  timestamps: false, // Desactiva columnas createdAt y updatedAt
 });
 
 module.exports = Url;
