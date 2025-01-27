@@ -13,4 +13,16 @@ router.get('/', async (req, res) => {
   }
 });
 
+// Ruta para guardar una URL
+router.post('/', async (req, res) => {
+  try {
+    const { url, shortened_url } = req.body; // Extrae la URL del cuerpo de la petición
+    const result = await Url.create({ url, shortened_url }); // Recupera las URLs desde la base de datos
+    res.json(result);
+  } catch (error) {
+    console.error('Error creating URL:', error);
+    res.status(500).json({ error: 'Error getting URLs' });
+  }
+});
+
 module.exports = router;
